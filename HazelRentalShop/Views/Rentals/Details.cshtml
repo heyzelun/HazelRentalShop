@@ -1,0 +1,114 @@
+﻿@model HazelRentalShop.Models.Rental
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Rental</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Customer.Address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RentDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RentDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ReturnDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsPaid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsPaid)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+<!-- Collapsible Section for Rental Details -->
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#rentalDetailsCollapse" aria-expanded="false" aria-controls="rentalDetailsCollapse">
+    View Rental Details
+</button>
+
+<div class="collapse mt-3" id="rentalDetailsCollapse">
+    <div class="card card-body">
+        <h5>Rental Details</h5>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Customer Information</th>
+                    <th>Movie Information</th>
+                    <th>Rental Information</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.RentalDetails)
+                {
+                    <tr>
+                        <td>
+                            <strong>ID:</strong> @item.Customer.Id <br />
+                            <strong>Name:</strong> @item.Customer.FirstName @item.Customer.LastName <br />
+                            <strong>DateOfBirth:</strong> @item.Customer.DateOfBirth <br />
+                            <strong>Age:</strong> @item.Customer.Age <br />
+                            <strong>Sex:</strong> @item.Customer.Sex <br />
+                            <strong>Address:</strong> @item.Customer.Address <br />
+                            <strong>Email:</strong> @item.Customer.Email <br />
+                            <strong>Phone:</strong> @item.Customer.Phone 
+                        </td>
+                        <td>
+                            <strong>ID:</strong> @item.Movie.Id <br />
+                            <strong>Title:</strong> @item.Movie.Title <br />
+                            <strong>Release Date:</strong> @item.Movie.DateRelease.ToString("yyyy-MM-dd") <br />
+                            <strong>Director:</strong> @item.Movie.Director <br />
+                            <strong>Genre:</strong> @item.Movie.Genre <br />
+                            <strong>Description:</strong> @item.Movie.Description <br />
+                            <strong>Rating:</strong> @item.Movie.Rating <br />
+                            <strong>Price:</strong> ₱@item.Movie.Price.ToString("N2") <br />
+                            <strong>Availability:</strong> @(item.Movie?.IsAvailable == true ? "Available" : "Not Available")
+                        </td>
+                        <td>
+                            <strong>Status:</strong> @item.Status <br />
+                            <strong>Rental Date:</strong> @item.Rental?.RentDate.ToString("yyyy-MM-dd") <br />
+                            <strong>Return Date:</strong> @(item.Rental?.ReturnDate?.ToString("yyyy-MM-dd") ?? "Not Returned") <br />
+                            <strong>Quantity:</strong> @item.Rental?.Quantity
+                        </td>
+                        <td class="text-center">
+                            <span class="badge @(item.Rental?.IsPaid == true ? "bg-success" : "bg-danger")">
+                                @(item.Rental?.IsPaid == true ? "Paid" : "Pending")
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
