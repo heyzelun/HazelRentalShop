@@ -96,11 +96,23 @@
                         <strong>Rental Date:</strong> @Model.RentDate.ToString("yyyy-MM-dd") <br />
                         <strong>Return Date:</strong> @(Model.ReturnDate?.ToString("yyyy-MM-dd") ?? "Not Returned") <br />
                         <strong>Quantity:</strong> @Model.Quantity <br />
+
                         <strong>Payment Status:</strong>
                         <span class="badge @(Model.IsPaid ? "bg-success" : "bg-danger")">
                             @(Model.IsPaid ? "Paid" : "Pending")
-                        </span>
+                        </span> <br />
+
+                        <strong>Rental Status:</strong>
+                        @if (Model.ReturnDate != null)
+                        {
+                            <button class="btn btn-primary" disabled>Returned</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-warning" onclick="markAsReturned(@Model.Id)">Pending</button>
+                        }
                     </td>
+
                 </tr>
             </tbody>
         </table>
