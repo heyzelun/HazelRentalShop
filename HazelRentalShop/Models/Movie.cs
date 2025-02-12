@@ -28,8 +28,9 @@ namespace HazelRentalShop.Models
         [Required]
         [Range(0, double.MaxValue, ErrorMessage = "Price must be a positive value.")]
         public double Price { get; set; }
-        public bool IsAvailable { get; set; } = true;  
+        public bool IsAvailable { get; set; } = true;
 
+  
         public ICollection<Rental>? Rentals { get; set; }
         public ICollection<RentalDetail>? RentalDetails { get; set; }
     }

@@ -11,9 +11,8 @@ namespace HazelRentalShop.Models
         [Required]
         public string LastName { get; set; } = string.Empty;
         [Required]
-        public DateOnly DateOfBirth { get; set; }  // Non-nullable to enforce validation
-        public int Age { get; set; }  // No need for [Required], int is always required
-        [Required]
+        public DateOnly DateOfBirth { get; set; }  
+        public int Age { get; set; } 
         public string Sex { get; set; } = string.Empty;
         [Required]
         public string Address { get; set; } = string.Empty;
@@ -24,6 +23,6 @@ namespace HazelRentalShop.Models
         [Phone]  // Validates phone number format
         public string Phone { get; set; } = string.Empty;
 
-        public ICollection<Rental> Rentals { get; set; } = new List<Rental>();
+        public ICollection<Rental>? Rentals { get; set; } 
     }
 }

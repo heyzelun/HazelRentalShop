@@ -1,8 +1,45 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welcome to Video Rental Shop";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container text-center mt-5">
+    <div class="jumbotron bg-primary text-white p-5 rounded">
+        <h1 class="display-3">Welcome to Video Rental Shop</h1>
+        <p class="lead">Explore a world of movies and rent your favorites today!</p>
+        <a href="@Url.Action("Index", "Movies")" class="btn btn-light btn-lg">Browse Movies</a>
+        <a href="@Url.Page("/Account/Register", new { area = "Identity" })" class="btn btn-warning btn-lg">Join Now</a>
+
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <i class="fas fa-film fa-3x text-primary"></i>
+                    <h5 class="card-title mt-3">Wide Collection</h5>
+                    <p class="card-text">Discover thousands of movies, from classics to the latest releases.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <i class="fas fa-shopping-cart fa-3x text-success"></i>
+                    <h5 class="card-title mt-3">Easy Rentals</h5>
+                    <p class="card-text">Rent your favorite movies with a simple click.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <i class="fas fa-clock fa-3x text-danger"></i>
+                    <h5 class="card-title mt-3">Flexible Returns</h5>
+                    <p class="card-text">Enjoy hassle-free rental returns with great service.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
